@@ -10,19 +10,34 @@ addBtn.addEventListener('click', addNewValues);
 var newDateInput = (document.getElementById('date-area'));
 var newWeightInput = (document.querySelector('.get-weight'));
 var historyContainer = (document.querySelector('.container'));
-var storageForValues = window.localStorage;
-function addNewValues() {
-    var weightParsed = (Math.round(parseFloat(newWeightInput.value) * 10) / 10).toFixed(1);
-    var dateParsed = new Date(newDateInput.value);
-    if (dateParsed <= new Date()) {
-        values.push({ weight: weightParsed, date: dateParsed });
-        console.log(values[0].weight);
+function getValuesFromStorage() {
+    for (var i = 0; i < localStorage.length / 2; i++) {
+        values.push({ weight: localStorage.getItem("w" + i), date: new Date(localStorage.getItem("d" + i)) });
         printValues();
-        historyContainer.style.height = "200px";
+    }
+}
+function addNewValues() {
+    try {
+        if (parseFloat(newWeightInput.value) > 0) {
+            var weightParsed = (Math.round(parseFloat(newWeightInput.value) * 10) / 10).toFixed(1);
+            var dateParsed = new Date(newDateInput.value);
+            if (dateParsed <= new Date()) {
+                values.push({ weight: weightParsed, date: dateParsed });
+                console.log(values[0].weight);
+                addValuesToStorage();
+                printValues();
+                historyContainer.style.height = "200px";
+            }
+        }
+        else {
+            throw "The date, and the value fields can't be empty!";
+        }
+    }
+    catch (err) {
+        console.log(err);
     }
 }
 function printValues() {
-    var temp = "";
     function sortFunction(a, b) {
         var dateA = new Date(a.date).getTime();
         var dateB = new Date(b.date).getTime();
@@ -30,18 +45,23 @@ function printValues() {
     }
     ;
     var sortedValues = values.sort(sortFunction);
-    storageForValues.setItem("weightDate", sortedValues.toString());
-    console.log(storageForValues.getItem("weightDate").toString());
+    var HTMLtext = "";
     for (var i = 0; i < sortedValues.length; i++) {
         if (i < 10) {
-            temp += "<li class=\"items weights\">" + (sortedValues[i].weight + " kg") + "</li>";
-            temp += "<li class=\"items dates\">" + dateFormat(sortedValues[i].date) + "</li>";
+            HTMLtext += "<li class=\"items weights\">" + (sortedValues[i].weight + " kg") + "</li>";
+            HTMLtext += "<li class=\"items dates\">" + dateFormat(sortedValues[i].date) + "</li>";
         }
-        document.querySelector(".list").innerHTML = temp;
+        document.querySelector(".list").innerHTML = HTMLtext;
     }
 }
 function dateFormat(date) {
     return date.toDateString();
 }
-function getValuesFromStorage() {
+function addValuesToStorage() {
+    for (var i = 0; i < values.length; i++) {
+        localStorage.setItem("w" + i, values[i].weight.toString());
+        localStorage.setItem("d" + i, values[i].date.toString());
+        console.log(localStorage);
+    }
 }
+getValuesFromStorage();

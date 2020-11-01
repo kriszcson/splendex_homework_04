@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weight Tracker</title>
     <link rel="stylesheet" href="dist/css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500&display=swap" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -15,16 +19,17 @@
         </div>
         <div class="new-value">
             <div class="labels"><label for="date-area">Date</label></div>
-            <input type="date" id="date-area" class="get-date" name="date" value="2020-10-01" min="2020-10-01" max="2020-10-31">
-            <div class="labels">
-                <label for="input-weight">Weight</label></div>
-            <input type=" text " class="get-weight " value="27">
+            <input type="datetime-local" id="date-area" class="get-date" name="date" min=" 2020-10-01 " max="2020-10-31 ">
+            <div class="labels ">
+                <label for="input-weight ">Weight</label></div>
+            <input type=" text " class="get-weight " value="27 ">
             <button class="add ">Add</button>
         </div>
         <div class="history ">
             <div class="subtitle ">History</div>
             <div class="container ">
-                <tbody class="list"></tbody>
+                <ul class="list ">
+                </ul>
             </div>
         </div>
         <div class="statistics ">

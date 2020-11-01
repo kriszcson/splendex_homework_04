@@ -7,25 +7,41 @@ console.log(values[1].weight);
 console.log(values[0].weight);*/
 var addBtn = document.querySelector(".add");
 addBtn.addEventListener('click', addNewValues);
-var newDate = (document.getElementById('date-area'));
-var newWeight = (document.querySelector('.get-weight'));
-var listOfMeasures = (document.querySelector('weights'));
+var newDateInput = (document.getElementById('date-area'));
+var newWeightInput = (document.querySelector('.get-weight'));
+var historyContainer = (document.querySelector('.container'));
+var storageForValues = window.localStorage;
 function addNewValues() {
-    console.log(newDate.valueAsDate);
-    var weightAsNumber = (Math.round(parseFloat(newWeight.value) * 10) / 10).toFixed(1);
-    values.push({ weight: weightAsNumber, date: newDate.valueAsDate });
-    console.log(values[0].weight);
-    printValues();
+    var weightParsed = (Math.round(parseFloat(newWeightInput.value) * 10) / 10).toFixed(1);
+    var dateParsed = new Date(newDateInput.value);
+    if (dateParsed <= new Date()) {
+        values.push({ weight: weightParsed, date: dateParsed });
+        console.log(values[0].weight);
+        printValues();
+        historyContainer.style.height = "200px";
+    }
 }
 function printValues() {
     var temp = "";
-    for (var i = 0; i < values.length; i++) {
-        temp += "<div class =\"weights\">" + values[i].weight + "</div>";
-        temp += "<div class =\"dates\">" + (values[i].date + " kg") + "</div>";
+    function sortFunction(a, b) {
+        var dateA = new Date(a.date).getTime();
+        var dateB = new Date(b.date).getTime();
+        return dateA < dateB ? 1 : -1;
     }
-    console.log(temp);
-    var newRow = document.createElement("div"); // Create a <li> node
-    var textnode = document.createTextNode(temp); // Create a text node
-    newRow.appendChild(textnode);
-    document.getElementById('list').appendChild(newRow); // Append the text to <li>
+    ;
+    var sortedValues = values.sort(sortFunction);
+    storageForValues.setItem("weightDate", sortedValues.toString());
+    console.log(storageForValues.getItem("weightDate").toString());
+    for (var i = 0; i < sortedValues.length; i++) {
+        if (i < 10) {
+            temp += "<li class=\"items weights\">" + (sortedValues[i].weight + " kg") + "</li>";
+            temp += "<li class=\"items dates\">" + dateFormat(sortedValues[i].date) + "</li>";
+        }
+        document.querySelector(".list").innerHTML = temp;
+    }
+}
+function dateFormat(date) {
+    return date.toDateString();
+}
+function getValuesFromStorage() {
 }

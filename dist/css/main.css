@@ -1,88 +1,89 @@
 body {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 0 auto;
+  font-family: 'Hind Siliguri', sans-serif;
+  background-color: #f6f8fa;
 }
 
 body .header {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  height: 10%;
   width: 100%;
-  height: 15vh;
-  margin-bottom: 100px;
-  background-color: #4e789b;
+  margin-bottom: 30px;
+  font-size: 4rem;
+  text-align: center;
+  color: #071d2e;
+  font-family: 'Hind Siliguri', sans-serif;
+  font-weight: bold;
 }
 
-body .header .header-text {
-  color: #f5e5df;
-  font-size: 2.8rem;
-  padding-top: 60px;
-}
-
-body .new-value {
+.new-value {
   margin-top: 40px;
-  margin-left: 10%;
-  font-size: 2rem;
-  margin-left: 10%;
+  margin-left: 20%;
+  font-size: 2.5rem;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 40px;
 }
 
-body .new-value .labels {
-  margin-right: 30px;
-  margin-left: 30px;
+.new-value .labels {
+  text-align: center;
+  margin: 30px;
 }
 
-body .new-value .add {
-  display: inline-block;
-  padding: 4px 80px;
-  font-size: 16px;
+.new-value .get-date,
+.new-value .get-weight {
+  height: 30px;
+  text-align: center;
+}
+
+.new-value .add {
   line-height: 10px;
   text-align: center;
   vertical-align: middle;
   margin-left: 10px;
   border: 2px solid #272727;
-  border-radius: 3%;
+  border-radius: 5%;
+  text-align: center;
+  width: 120px;
+  height: 33px;
 }
 
-body .history {
+.history {
   margin-top: 40px;
   margin-left: 10%;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 
-body .history .container {
+.history .container {
+  height: 200px;
   margin-top: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   margin-right: 30%;
   padding-bottom: 300px;
-  border: 4px solid #272727;
+  border: 4px solid #071d2e;
   border-radius: 2%;
-  background-color: #ebedf5;
+  background-color: #89aecc;
 }
 
-body .subtitle {
-  font-size: 3rem;
+.subtitle {
+  font-size: 2.5rem;
   margin-bottom: 20px;
 }
 
-body .statistics {
+.statistics {
   margin-left: 10%;
 }
 
-body .statistics .btn-row {
+.statistics .btn-row {
   margin-left: 10%;
   width: 100%;
   margin-bottom: 30px;
 }
 
-body .statistics .selectors {
+.statistics .selectors {
   display: inline-block;
   padding: 4px 60px;
   font-size: 16px;
@@ -94,11 +95,11 @@ body .statistics .selectors {
   border-radius: 3%;
 }
 
-body .statistics .selectors:hover {
+.statistics .selectors:hover {
   background-color: #89aecc;
 }
 
-body .statistics .weight-box {
+.statistics .weight-box {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -111,10 +112,10 @@ body .statistics .weight-box {
   width: 34.6%;
   padding-bottom: 50px;
   font-size: 2rem;
-  background-color: #ebedf5;
+  background-color: #89aecc;
 }
 
-body .statistics .prgress-box {
+.statistics .prgress-box {
   margin-top: 40px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
@@ -125,6 +126,34 @@ body .statistics .prgress-box {
   width: 70%;
   padding-bottom: 50px;
   font-size: 2rem;
-  background-color: #ebedf5;
+  background-color: #89aecc;
+}
+
+.list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+li {
+  list-style-type: none;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  display: inline;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 50%;
+          flex: 0 50%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+  font-size: 1.6rem;
+  color: #071d2e;
+  border-bottom: 2px solid #071d2e;
+}
+
+.weights {
+  background-color: #89aecc;
 }
 /*# sourceMappingURL=main.css.map */

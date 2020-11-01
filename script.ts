@@ -14,27 +14,47 @@ console.log(values[0].weight);*/
 
 const addBtn = document.querySelector(".add")!;
 addBtn.addEventListener('click', addNewValues);
-const newDate = (document.getElementById('date-area')!) as HTMLInputElement;
-const newWeight = (document.querySelector('.get-weight')!) as HTMLInputElement;
-const listOfMeasures = (document.querySelector('weights')!);
+const newDateInput = (document.getElementById('date-area')!) as HTMLInputElement;
+const newWeightInput = (document.querySelector('.get-weight')!) as HTMLInputElement;
+const historyContainer = (document.querySelector('.container')!) as HTMLElement;
+
+
 
 function addNewValues() {
-    console.log(newDate.valueAsDate);
-    let weightAsNumber = (Math.round(parseFloat(newWeight.value) * 10) / 10).toFixed(1);
-    values.push({ weight: weightAsNumber, date: newDate.valueAsDate });
-    console.log(values[0].weight);
-    printValues();
+    let weightParsed = (Math.round(parseFloat(newWeightInput.value) * 10) / 10).toFixed(1);
+    let dateParsed = new Date(newDateInput.value);
+    if (dateParsed <= new Date()) {
+        values.push({ weight: weightParsed, date: dateParsed });
+        console.log(values[0].weight);
+        getValuesFromStorage();
+        printValues();
+        historyContainer.style.height = "200px";
+    }
 }
 
 function printValues() {
     let temp = "";
-    for (let i = 0; i < values.length; i++) {
-        temp += `<div class ="weights">${values[i].weight}</div>`;
-        temp += `<div class ="dates">${values[i].date + " kg"}</div>`;
+    function sortFunction(a, b) {
+        var dateA = new Date(a.date).getTime();
+        var dateB = new Date(b.date).getTime();
+        return dateA < dateB ? 1 : -1;
+    };
+    let sortedValues = values.sort(sortFunction);
+
+    for (let i = 0; i < sortedValues.length; i++) {
+        if (i < 10) {
+            temp += `<li class="items weights">${sortedValues[i].weight + " kg"}</li>`;
+            temp += `<li class="items dates">${dateFormat(sortedValues[i].date)}</li>`;
+        }
+        document.querySelector(".list").innerHTML = temp;
     }
-    console.log(temp)
-    let newRow = document.createElement("div");                 // Create a <li> node
-    let textnode = document.createTextNode(temp);         // Create a text node
-    newRow.appendChild(textnode)
-    document.getElementById('list').appendChild(newRow);                              // Append the text to <li>
+}
+function dateFormat(date: Date) {
+    return date.toDateString();
+}
+function getValuesFromStorage() {
+    for (let i = 0; i < values.length; i++) {
+        localStorage.setItem(i.toString(), values[i].date.toTimeString());
+        console.log(localStorage);
+    }
 }

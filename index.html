@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Tracker</title>
+    <link rel="stylesheet" href="dist/css/main.css">
+</head>
+
+<body>
+    <article>
+        <div class="header ">
+            <div class="header-text">Weight Tracker</div>
+        </div>
+        <div class="new-value">
+            <div class="labels"><label for="date-area">Date</label></div>
+            <input type="date" id="date-area" class="get-date" name="date" value="2020-10-01" min="2020-10-01" max="2020-10-31">
+            <div class="labels">
+                <label for="input-weight">Weight</label></div>
+            <input type=" text " class="get-weight " value="27">
+            <button class="add ">Add</button>
+        </div>
+        <div class="history ">
+            <div class="subtitle ">History</div>
+            <div class="container ">
+                <tbody class="list"></tbody>
+            </div>
+        </div>
+        <div class="statistics ">
+            <div class="subtitle ">Statistics</div>
+            <div class="btn-row ">
+                <button class="selectors --week ">Week</button>
+                <button class="selectors --month ">Month</button>
+                <button class="selectors --year ">Year</button>
+                <button class="selectors --lifetime ">Lifetime</button>
+            </div>
+            <div class="graph ">
+            </div>
+            <div class=" weight-box --currentWeightBox ">
+                <div class="current-weight "></div>
+                Current weight
+            </div>
+            <div class="weight-box --startedWeightBox ">
+                <div class="started-weight "></div>
+                Weight at the start of the period
+            </div>
+            <div class="prgress-box ">
+                <div class="progress "></div>
+                Progress
+            </div>
+
+        </div>
+    </article>
+</body>
+<script src="script.js "></script>
+
+</html>

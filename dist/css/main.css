@@ -5,7 +5,6 @@ body {
 
 body .header {
   height: 10%;
-  width: 100%;
   margin-bottom: 30px;
   font-size: 4rem;
   text-align: center;
@@ -21,12 +20,13 @@ body .header {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  text-align: center;
   height: 40px;
 }
 
@@ -38,19 +38,7 @@ body .header {
 .new-value .get-date,
 .new-value .get-weight {
   height: 30px;
-  text-align: center;
-}
-
-.new-value .add {
-  line-height: 10px;
-  text-align: center;
-  vertical-align: middle;
-  margin-left: 10px;
-  border: 2px solid #272727;
-  border-radius: 5%;
-  text-align: center;
-  width: 120px;
-  height: 33px;
+  font-size: 1.6rem;
 }
 
 .history {
@@ -59,6 +47,9 @@ body .header {
 }
 
 .history .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   height: 200px;
   margin-top: 10px;
   margin-right: 30%;
@@ -103,14 +94,10 @@ body .header {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  text-align: center;
   border: 3px solid #272727;
   border-radius: 10%;
-  width: 34.6%;
-  padding-bottom: 50px;
+  width: 35%;
+  height: 250px;
   font-size: 2rem;
   background-color: #89aecc;
 }
@@ -141,7 +128,7 @@ li {
   list-style-type: none;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  display: inline;
+  display: inline-block;
   -webkit-box-flex: 0;
       -ms-flex: 0 50%;
           flex: 0 50%;
@@ -153,7 +140,17 @@ li {
   border-bottom: 2px solid #071d2e;
 }
 
-.weights {
-  background-color: #89aecc;
+.actual-value,
+.started-value {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 5rem;
+  margin-top: 150px;
+  color: #071d2e;
 }
 /*# sourceMappingURL=main.css.map */

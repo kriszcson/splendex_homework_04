@@ -43,6 +43,7 @@ body {
     margin-top: 40px;
     margin-left: $primary-left-margin;
     .container {
+        display: flex;
         height: 200px;
         margin-top: 10px;
         margin-right: 30%;
@@ -81,12 +82,10 @@ body {
     }
     .weight-box {
         display: inline-flex;
-        justify-content: center;
-        text-align: center;
         border: 3px solid #272727;
         border-radius: 10%;
-        width: 34.6%;
-        padding-bottom: 50px;
+        width: 35%;
+        height: 250px;
         font-size: 2rem;
         background-color: $box-background-color;
     }
@@ -111,8 +110,8 @@ body {
 li {
     list-style-type: none;
     flex-wrap: wrap;
-    display: inline;
-    flex: 0 70%;
+    display: inline-block;
+    flex: 0 50%;
     box-sizing: border-box;
     width: 100%;
     font-size: $primary-font-size;
@@ -120,8 +119,15 @@ li {
     border-bottom: 2px solid $primary-font-color;
 }
 
-.weights {
-    background-color: $primary-background-color;
-}
+.current-weight,
+.started-weight {}
 
-.dates {}
+.actual-value,
+.started-value {
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    font-size: 5rem;
+    margin-top: 150px;
+    color: $primary-font-color;
+}

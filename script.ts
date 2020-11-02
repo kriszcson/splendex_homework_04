@@ -47,12 +47,6 @@ function addNewValues() {
 }
 
 function printValues() {
-
-    function sortFunction(a, b) {
-        var dateA = new Date(a.date).getTime();
-        var dateB = new Date(b.date).getTime();
-        return dateA < dateB ? 1 : -1;
-    };
     let sortedValues = values.sort(sortFunction);
     let HTMLtext = "";
     for (let i = 0; i < sortedValues.length; i++) {
@@ -74,6 +68,55 @@ function addValuesToStorage() {
         localStorage.setItem("d" + i, values[i].date.toString());
         console.log(localStorage);
     }
+}
+
+function sortFunction(a, b) {
+    var dateA = new Date(a.date).getTime();
+    var dateB = new Date(b.date).getTime();
+    return dateA < dateB ? 1 : -1;
+};
+
+const weekBtn = document.querySelector(".--week");
+const monthBtn = document.querySelector(".--month");
+const yearBtn = document.querySelector(".--year");
+const lifeTimeBtn = document.querySelector(".--lifeTime");
+
+weekBtn.addEventListener('click', function () {
+    let now = new Date();
+    let startOfThisWeek = new Date(now.setDate(now.getDate() - 7));
+    valuesForPeriods(startOfThisWeek);
+});
+
+monthBtn.addEventListener('click', function () {
+    let now = new Date();
+    let startOfThisMonth = new Date(now.setDate(now.getMonth() - 1));
+    valuesForPeriods(startOfThisMonth);
+});
+yearBtn.addEventListener('click', function () {
+    let now = new Date();
+    let startOfThisYear = new Date(now.setDate(now.getFullYear() - 1));
+    valuesForPeriods(startOfThisYear);
+});
+
+lifeTimeBtn.addEventListener('click', function () {
+    console.log("cl");
+});
+
+function valuesForPeriods(date: Date) {
+    let actualValues: weightDay[] = [
+    ];
+    let sortedValues = values.sort(sortFunction);
+    for (let i = 0; i < sortedValues.length; i++) {
+        if (date.getTime() >= sortedValues[i].date.getTime()) {
+            actualValues.push({ weight: sortedValues[i].weight, date: sortedValues[i].date });
+        }
+        console.log(actualValues.length);
+    }
+    let actualValue = actualValues[actualValues.length - 1].weight;
+    let startedValue = actualValues[0].weight;
+    document.querySelector('.actual-value').innerHTML = actualValue;
+    document.querySelector('.started-value').innerHTML = startedValue;
+    console.log("clickHEHEHE");
 }
 
 getValuesFromStorage();

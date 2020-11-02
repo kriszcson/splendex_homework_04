@@ -10,6 +10,7 @@ addBtn.addEventListener('click', addNewValues);
 var newDateInput = (document.getElementById('date-area'));
 var newWeightInput = (document.querySelector('.get-weight'));
 var historyContainer = (document.querySelector('.container'));
+var progress = (document.querySelector('.progress-value'));
 function getValuesFromStorage() {
     for (var i = 0; i < localStorage.length / 2; i++) {
         values.push({ weight: localStorage.getItem("w" + i), date: new Date(localStorage.getItem("d" + i)) });
@@ -111,9 +112,18 @@ function valuesForPeriods(date) {
         var startedValue = actualValues[actualValues.length - 1].weight;
         document.querySelector('.actual-value').innerHTML = actualValue;
         document.querySelector('.started-value').innerHTML = startedValue;
+        var weightDiff = parseFloat(actualValue) - parseFloat(startedValue);
+        if (weightDiff > 0) {
+            progress.innerHTML != "+" + weightDiff;
+            progress.style.color = "#018b23";
+        }
+        else {
+            progress.innerHTML != weightDiff.toString();
+            progress.style.color = "#c16868";
+        }
         document.querySelector('.progress-value').innerHTML =
             (parseFloat(actualValue) - parseFloat(startedValue)).toString();
-        console.log((parseFloat(actualValue) - parseFloat(startedValue)).toString());
+        //console.log((parseFloat(actualValue) - parseFloat(startedValue)).toString());
     }
     else {
         document.querySelector('.actual-value').innerHTML = "";

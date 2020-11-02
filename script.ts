@@ -17,6 +17,7 @@ addBtn.addEventListener('click', addNewValues);
 const newDateInput = (document.getElementById('date-area')!) as HTMLInputElement;
 const newWeightInput = (document.querySelector('.get-weight')!) as HTMLInputElement;
 const historyContainer = (document.querySelector('.container')!) as HTMLElement;
+const progress = (document.querySelector('.progress-value')!) as HTMLElement;
 
 
 function getValuesFromStorage() {
@@ -129,9 +130,17 @@ function valuesForPeriods(date: Date) {
         let startedValue = actualValues[actualValues.length - 1].weight;
         document.querySelector('.actual-value').innerHTML! = actualValue;
         document.querySelector('.started-value').innerHTML! = startedValue;
+        let weightDiff = parseFloat(actualValue) - parseFloat(startedValue);
+        if (weightDiff > 0) {
+            progress.innerHTML != "+" + weightDiff;
+            progress.style.color = "#018b23";
+        } else {
+            progress.innerHTML != weightDiff.toString();
+            progress.style.color = "#c16868";
+        }
         document.querySelector('.progress-value').innerHTML! =
             (parseFloat(actualValue) - parseFloat(startedValue)).toString();
-        console.log((parseFloat(actualValue) - parseFloat(startedValue)).toString());
+        //console.log((parseFloat(actualValue) - parseFloat(startedValue)).toString());
     } else {
         document.querySelector('.actual-value').innerHTML! = "";
         document.querySelector('.started-value').innerHTML! = "";

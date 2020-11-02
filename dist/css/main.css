@@ -111,7 +111,7 @@ body .header {
   border: 3px solid #272727;
   border-radius: 10%;
   width: 70%;
-  padding-bottom: 50px;
+  height: 200px;
   font-size: 2rem;
   background-color: #89aecc;
 }
@@ -151,6 +151,15 @@ li {
   display: flex;
   font-size: 5rem;
   margin-top: 150px;
+  color: #071d2e;
+}
+
+.progress-value {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  font-size: 6rem;
   color: #071d2e;
 }
 /*# sourceMappingURL=main.css.map */

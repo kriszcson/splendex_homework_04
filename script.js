@@ -55,7 +55,7 @@ function addValuesToStorage() {
     for (var i = 0; i < values.length; i++) {
         localStorage.setItem("w" + i, values[i].weight.toString());
         localStorage.setItem("d" + i, values[i].date.toString());
-        console.log(localStorage);
+        //  console.log(localStorage);
     }
 }
 function sortFunction(a, b) {
@@ -75,30 +75,49 @@ weekBtn.addEventListener('click', function () {
 });
 monthBtn.addEventListener('click', function () {
     var now = new Date();
-    var startOfThisMonth = new Date(now.setDate(now.getMonth() - 1));
+    console.log(now.getTime());
+    var startOfThisMonth = new Date(now.setMonth(now.getMonth() - 1));
+    console.log(startOfThisMonth.getTime());
     valuesForPeriods(startOfThisMonth);
 });
 yearBtn.addEventListener('click', function () {
     var now = new Date();
+    console.log(now.getTime());
     var startOfThisYear = new Date(now.setDate(now.getFullYear() - 1));
+    console.log(startOfThisYear.getTime());
     valuesForPeriods(startOfThisYear);
 });
 lifeTimeBtn.addEventListener('click', function () {
-    console.log("cl");
+    if (values.length > 0) {
+        document.querySelector('.actual-value').innerHTML = values[0].weight;
+        document.querySelector('.started-value').innerHTML = values[values.length - 1].weight;
+        document.querySelector('.progress-value').innerHTML =
+            (parseFloat(values[0].weight) - parseFloat(values[values.length - 1].weight)).toString();
+    }
 });
 function valuesForPeriods(date) {
     var actualValues = [];
     var sortedValues = values.sort(sortFunction);
     for (var i = 0; i < sortedValues.length; i++) {
-        if (date.getTime() >= sortedValues[i].date.getTime()) {
+        if (date <= sortedValues[i].date) {
             actualValues.push({ weight: sortedValues[i].weight, date: sortedValues[i].date });
+            console.log("all: " + sortedValues[i].date.getTime());
+            console.log("actual: " + date.getTime());
         }
-        console.log(actualValues.length);
+        // console.log(actualValues.length);
     }
-    var actualValue = actualValues[actualValues.length - 1].weight;
-    var startedValue = actualValues[0].weight;
-    document.querySelector('.actual-value').innerHTML = actualValue;
-    document.querySelector('.started-value').innerHTML = startedValue;
-    console.log("clickHEHEHE");
+    if (actualValues.length > 0) {
+        var actualValue = actualValues[0].weight;
+        var startedValue = actualValues[actualValues.length - 1].weight;
+        document.querySelector('.actual-value').innerHTML = actualValue;
+        document.querySelector('.started-value').innerHTML = startedValue;
+        document.querySelector('.progress-value').innerHTML =
+            (parseFloat(actualValue) - parseFloat(startedValue)).toString();
+        console.log((parseFloat(actualValue) - parseFloat(startedValue)).toString());
+    }
+    else {
+        document.querySelector('.actual-value').innerHTML = "";
+        document.querySelector('.started-value').innerHTML = "";
+    }
 }
 getValuesFromStorage();

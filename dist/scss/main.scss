@@ -96,7 +96,7 @@ body {
         border: 3px solid #272727;
         border-radius: 10%;
         width: 70%;
-        padding-bottom: 50px;
+        height: 200px;
         font-size: 2rem;
         background-color: $box-background-color;
     }
@@ -129,5 +129,12 @@ li {
     display: flex;
     font-size: 5rem;
     margin-top: 150px;
+    color: $primary-font-color;
+}
+
+.progress-value {
+    justify-content: center;
+    text-align: center;
+    font-size: 6rem;
     color: $primary-font-color;
 }
